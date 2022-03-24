@@ -8,14 +8,12 @@ addbtn.addEventListener("click", function (e) {
 
     if (notes == null) {
         notesObj = [];
-    }
-    else {
+    } else {
         notesObj = JSON.parse(notes);
     }
     notesObj.push(addTxt.value);
     localStorage.setItem("notes", JSON.stringify(notesObj));
     addTxt.value = "";
-    console.log(notesObj);
 
     showNotes();
 })
@@ -24,8 +22,7 @@ function showNotes() {
     let notes = localStorage.getItem("notes");
     if (notes == null) {
         notesObj = [];
-    }
-    else {
+    } else {
         notesObj = JSON.parse(notes);
     }
 
@@ -47,8 +44,7 @@ function showNotes() {
     let notesElm = document.getElementById('notes');
     if (notesObj.length != 0) {
         notesElm.innerHTML = html;
-    }
-    else {
+    } else {
         notesElm.innerHTML = `
         <div class="alert alert-warning d-flex align-items-center" role="alert">
         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -59,33 +55,32 @@ function showNotes() {
     }
 }
 
-function DeleteNotes(index){
+function DeleteNotes(index) {
     let notes = localStorage.getItem("notes");
     if (notes == null) {
         notesObj = [];
-    }
-    else {
+    } else {
         notesObj = JSON.parse(notes);
     }
 
-    notesObj.splice(index,1);
+    notesObj.splice(index, 1);
     localStorage.setItem("notes", JSON.stringify(notesObj));
     showNotes();
 }
 
 let searchTxt = document.getElementById('searchTxt');
-searchTxt.addEventListener("input",function(){
-    let inputval =  searchTxt.value.toLowerCase();
+searchTxt.addEventListener("input", function () {
+    let inputval = searchTxt.value.toLowerCase();
+    let inputval1 = searchTxt.value.toUpperCase();
 
-    let noteCards= document.getElementsByClassName('note--card');
-    Array.from(noteCards).forEach(function(elements){
+    let noteCards = document.getElementsByClassName('note--card');
+    Array.from(noteCards).forEach(function (elements) {
 
         let cardTxt = elements.getElementsByTagName("p")[0].innerText;
-        if(cardTxt.includes(inputval)){
-            elements.style.display="block";
-        }
-        else{
-            elements.style.display="none";
+        if (cardTxt.includes(inputval)||cardTxt.includes(inputval1) ) {
+            elements.style.display = "block";
+        } else {
+            elements.style.display = "none";
         }
     })
 });
