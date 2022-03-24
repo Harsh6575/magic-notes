@@ -11,9 +11,13 @@ addbtn.addEventListener("click", function (e) {
     } else {
         notesObj = JSON.parse(notes);
     }
-    notesObj.push(addTxt.value);
-    localStorage.setItem("notes", JSON.stringify(notesObj));
-    addTxt.value = "";
+    if (addTxt.value == '') {
+        alert('please enter something in notes');
+    } else {
+        notesObj.push(addTxt.value);
+        localStorage.setItem("notes", JSON.stringify(notesObj));
+        addTxt.value = "";
+    }
 
     showNotes();
 })
@@ -77,7 +81,7 @@ searchTxt.addEventListener("input", function () {
     Array.from(noteCards).forEach(function (elements) {
 
         let cardTxt = elements.getElementsByTagName("p")[0].innerText;
-        if (cardTxt.includes(inputval)||cardTxt.includes(inputval1) ) {
+        if (cardTxt.includes(inputval) || cardTxt.includes(inputval1)) {
             elements.style.display = "block";
         } else {
             elements.style.display = "none";
