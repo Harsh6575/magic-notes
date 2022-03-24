@@ -1,8 +1,10 @@
 showNotes();
 
 let addbtn = document.getElementById('addbtn');
+var counter=0;
 addbtn.addEventListener("click", function (e) {
-
+    counter++;
+    console.log(counter);
     let addTxt = document.getElementById("addTxt");
     let notes = localStorage.getItem("notes");
 
@@ -40,7 +42,7 @@ function showNotes() {
             <div class="form-floating">
             <p class="card-text">${elements}</p>
             </div>
-            <button class="btn btn-primary my-3" id="${index}" onclick="DeleteNotes(this.id)">Delete Note</button>
+            <button class="btn btn-danger my-3" id="${index}" onclick="DeleteNotes(this.id)">Delete Note</button>
         </div>
     </div > `;
     });
@@ -87,4 +89,18 @@ searchTxt.addEventListener("input", function () {
             elements.style.display = "none";
         }
     })
+});
+
+var input = document.getElementById("addTxt");
+
+input.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+        if (input.innerHTML = '') {
+            alert('add something');
+        }
+        else {
+            event.preventDefault();
+            document.getElementById("addbtn").click();
+        }
+    }
 });
