@@ -4,7 +4,6 @@ let addbtn = document.getElementById('addbtn');
 var counter=0;
 addbtn.addEventListener("click", function (e) {
     counter++;
-    console.log(counter);
     let addTxt = document.getElementById("addTxt");
     let notes = localStorage.getItem("notes");
 
