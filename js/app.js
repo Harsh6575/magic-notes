@@ -1,7 +1,7 @@
 showNotes();
 
 let addbtn = document.getElementById('addbtn');
-var counter=0;
+var counter = 0;
 addbtn.addEventListener("click", function (e) {
     counter++;
     let addTxt = document.getElementById("addTxt");
@@ -77,12 +77,13 @@ let searchTxt = document.getElementById('searchTxt');
 searchTxt.addEventListener("input", function () {
     let inputval = searchTxt.value.toLowerCase();
     let inputval1 = searchTxt.value.toUpperCase();
+    let inputval2 = searchTxt.value;
 
     let noteCards = document.getElementsByClassName('note--card');
     Array.from(noteCards).forEach(function (elements) {
 
         let cardTxt = elements.getElementsByTagName("p")[0].innerText;
-        if (cardTxt.includes(inputval) || cardTxt.includes(inputval1)) {
+        if (cardTxt.includes(inputval) || cardTxt.includes(inputval1) || cardTxt.includes(inputval2)) {
             elements.style.display = "block";
         } else {
             elements.style.display = "none";
