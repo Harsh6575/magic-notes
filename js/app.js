@@ -77,13 +77,12 @@ let searchTxt = document.getElementById('searchTxt');
 searchTxt.addEventListener("input", function () {
     let inputval = searchTxt.value.toLowerCase();
     let inputval1 = searchTxt.value.toUpperCase();
-    let inputval2 = searchTxt.value;
 
     let noteCards = document.getElementsByClassName('note--card');
     Array.from(noteCards).forEach(function (elements) {
 
         let cardTxt = elements.getElementsByTagName("p")[0].innerText;
-        if (cardTxt.includes(inputval) || cardTxt.includes(inputval1) || cardTxt.includes(inputval2)) {
+        if (cardTxt.includes(inputval) || cardTxt.includes(inputval1)) {
             elements.style.display = "block";
         } else {
             elements.style.display = "none";
@@ -104,3 +103,16 @@ input.addEventListener("keyup", function (event) {
         }
     }
 });
+
+function deldeteall(){
+    let notes = localStorage.getItem("notes");
+    if (notes == null) {
+        notesObj = [];
+    } else {
+        notesObj = JSON.parse(notes);
+    }
+
+    notesObj.splice(index, 1);
+    localStorage.setItem("notes", JSON.stringify(notesObj));
+    showNotes();
+}
